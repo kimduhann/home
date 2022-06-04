@@ -1,0 +1,57 @@
+<html>
+<head>
+</head>
+<body>
+<h1>Chart예제<h1/>
+<div style='width:80vw'>
+   <canvas id="myChart"></canvas> 
+<div/>
+<div>
+<button onclick='settype("line")'>라인<button onclick='settype("pie")'>파이
+<button onclick='settype("doughnut")'>도넛<button onclick='settype("bar")'>바
+<button onclick='adddata()'>추가</button>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labels = [
+    '20대(뉴비)',
+    '30대(평타)',
+    '40대(망할 조짐이 보임)',
+    '50대(나락)',
+    '60대(부흥)',
+    '70대(떡상)',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: '엄준식의 주식실황',
+      backgroundColor: 'rgb(255, 100, 100)',
+      borderColor: 'rgb(255, 200, 200)',
+      data: [50, 100, 50, 0, 110, 999, 45],
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+</script>
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+function settype(t){
+    config.type = t
+    myChart.update()
+}
+function adddata(){
+data.datasets[0].data.push(Math.random()*1000)
+data.labels.push('new data')
+myChart.update()
+}
+</script>
+ 
+</body>
+</html>
